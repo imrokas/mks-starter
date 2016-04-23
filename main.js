@@ -4,6 +4,13 @@ function searchBooks(library, key, keyword) {
 	var matches = [];
 	// need go over every book in library
 	for(var i = 0; i < library.length; i++) {
+		if(key === 'author') {
+			for(var j = 0; i < library[i].author.length; j++) {
+				if(library[i].author[j].inclues(keyword) !== -1) {
+					matches.push(library[i])
+				}
+			}
+		}
 		// if I find a match
 		if(library[i][key].includes(keyword) !== -1){
 			// add to matches array
@@ -116,4 +123,106 @@ function getSnack(vendingMachine, snackName) {
 		}
 	}
 	return 'There is no snack: ' + snackName;
+}
+
+//.slice, .split, .splice(starter, deletecount), 
+// data modeling (more practice #1), double authors
+//  for book example, Write a function evenLengthWords
+//  that takes an array of strings as an argument,
+//  and returns an array of just the words that have
+//  an even length.
+
+function makeBook(title, author, msrp, pageCount) {
+	return {
+		title: title,
+		author: author,
+		msrp: msrp,
+		pageCount: pageCount
+	};
+}
+
+function display(book) {
+	var display = book.title;
+	if(Array.isArray(book.author)) {
+		display += ' by ' + book.author.join(', ');
+	}
+	else {
+		display += ' by ' + book.author;
+	}
+	display += ' - $' + book.msrp + ' , p. ' + book.pageCount;
+	return display
+}
+
+function evenLengthWords(str) {
+	var words = str.split(' ');
+	var res = [];
+	for(var i = 0; i < words.length; i++) {
+		if(words[i].length % 2 === 0) {
+			res.push(words[i]);
+		}
+	}
+	return res;
+}
+
+//.slice(start, [end])
+//.split(delimeter)
+//.splice(starter, deletecount)
+//['a', 'b', 'c', 'd'].splice(1, 2) // => ['a', 'd']
+
+//Write a function remove that accepts an
+//array and an element, and returns an array with
+//all ocurrences of element removed.
+function remove(array, element) {
+  var res = [];
+  // iterate over array
+  for(var i = 0; i < arra.length; i++) {
+  	if(array[i] !== element) {
+  		res.push(array[i]);
+  	}
+  }
+  return res;
+}
+
+var library = [
+ {title: 'Harry Potter 1'},
+ {title: 'Harry Potter 2'},
+ {title: 'Some other book'}
+]
+
+searchBooks(library, title, 'Harry');
+i = 0; matches = [{title: 'Harry Potter 1'}]
+i = 1; matches = [{title: 'Harry Potter 1'}, {title: 'Harry Potter 2'}]
+i = 2; matches = [{title: 'Harry Potter 1'}, {title: 'Harry Potter 2'}]
+i = 3; (3 < 3)
+
+//=> [{title: 'Harry Potter 1'}, {title: 'Harry Potter 2'}]
+
+function clean1(obj) {
+	// iterate over every key
+	for(var prop in obj) {
+		// check if value is odd 
+		if(typeof obj[prop] === 'number' && obj[prop] % 2 === 1) {
+			//remove it
+			delete obj[prop];
+		}
+	}
+	//return obj
+	return obj;
+}
+
+function clean2(obj) {
+	// create results object
+	var res = {};
+	// iterate over object
+	for(var key in obj) {
+		//check if value is odd number
+		if(typeof obj[key] === 'number' && obj[key] % 2 === 1) {
+			// then skip it
+			continue;
+		}
+		// add to resutls obj
+		res[key] = obj[key];
+	}
+	// return results obj
+	return res;
 }
