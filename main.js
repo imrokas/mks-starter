@@ -34,3 +34,23 @@ function extends(obj1, obj2) {
 	//return obj1
 	return obj1;
 }
+
+//#3 Write a function select that accepts two arguments: an object and an array.
+// The array should contain names of keys that will be selected from the object:
+
+function select(obj, keys) {
+	// create results obj
+	var res = {};
+	// iterate over keys array
+	for(var i = 0; i < keys.length; i++) {
+		// check if key exists
+		// if(obj[keys[i]])
+		if(obj.hasOwnProperty(keys[i])) {
+			// if it does add to results object
+			res[keys[i]] = obj[keys[i]];
+		}
+
+	}
+	// return results object
+	return res;
+}
