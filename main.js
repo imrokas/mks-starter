@@ -226,3 +226,38 @@ function clean2(obj) {
 	// return results obj
 	return res;
 }
+
+//count characters
+function countCharacters(s) {
+  // create results object
+  var res = {};
+  //travers string
+  for(var i = 0; i < s.length; i++) {
+  	//check if letter exist in results obj
+  	if(!!res[s[i]]) {
+  		// if it doesn't add it
+  		res[s[i]] = 0;
+  	}
+  	//increase count by 1
+  	res[s[i]]++;
+  }
+  //return result obj
+  return res;
+}
+
+'hello'
+res = {
+	h: 1,
+	e: 1,
+	l: 2,
+	o: 1
+}
+
+
+//falsy values
+// undefined
+// null
+// 0
+// []
+// ''
+// false
