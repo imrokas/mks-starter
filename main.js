@@ -54,3 +54,66 @@ function select(obj, keys) {
 	// return results object
 	return res;
 }
+
+//I don't understand the "Repetition Revisited: 
+//Another Technique" lesson, I'm confused about basically
+//the whole lesson.
+
+function repeatStr(count, str) {
+	if(count === 0) {
+		return '';
+	}
+	return str + repeatStr(count-1, str);
+}
+
+function repeatStr(count, str) {
+	function repeat(times, wholeStr) {
+		if(times < count) {
+			return repeat(times + 1, wholeStr + str);
+		}
+		return wholeStr;
+	}
+
+	return repeat(0, '');
+}
+
+function repeatStrFor(count, str) {
+	var res = '';
+	for(var i = 0; i < count; i++) {
+		res = res + str;
+	}
+	return res;
+}
+
+// would like to review objects and data modeling. 
+// specifically how data modeling can be built from objects. 
+// so perhaps review when an array is preferable to an object.
+function makeSnack(name, weight, price) {
+	return {
+		name: name,
+		weight: weight,
+		price: price
+	};
+}
+
+var vendingMachine = [];
+
+function addSnack(vendingMachine, name, weight, price) {
+	vendingMachine.push(makeSnack(name, weight, price));
+}
+
+function getSnack(vendingMachine, snackName) {
+	// create result var
+	var res;
+	// go over every snack
+	for(var i = 0; i < vendingMachine.length; i++) {
+		if(vendingMachine[i][name] === snackName) {
+			// save snack
+			res = vendingMachine[i];
+			//remove from machine
+			vendingMachine.splice(i, 1);
+			return res;
+		}
+	}
+	return 'There is no snack: ' + snackName;
+}
